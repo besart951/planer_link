@@ -1,0 +1,304 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+:root {
+  color-scheme: light;
+  --radius: 0.5rem;
+  --background: oklch(0.985 0.012 105);
+  --foreground: oklch(0.16 0.015 240);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.16 0.015 240);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.16 0.015 240);
+  --primary: oklch(0.43 0.12 164);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.94 0.018 235);
+  --secondary-foreground: oklch(0.22 0.04 238);
+  --muted: oklch(0.95 0.01 115);
+  --muted-foreground: oklch(0.46 0.018 245);
+  --accent: oklch(0.93 0.044 78);
+  --accent-foreground: oklch(0.26 0.04 70);
+  --destructive: oklch(0.56 0.19 25);
+  --destructive-foreground: oklch(0.985 0 0);
+  --success: oklch(0.52 0.13 145);
+  --success-foreground: oklch(0.985 0 0);
+  --warning: oklch(0.75 0.13 78);
+  --warning-foreground: oklch(0.17 0.015 75);
+  --border: oklch(0.88 0.018 110);
+  --input: oklch(0.88 0.018 110);
+  --ring: oklch(0.52 0.13 164 / 55%);
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  --background: oklch(0.145 0.016 240);
+  --foreground: oklch(0.965 0.006 145);
+  --card: oklch(0.19 0.018 240);
+  --card-foreground: oklch(0.965 0.006 145);
+  --popover: oklch(0.18 0.018 240);
+  --popover-foreground: oklch(0.965 0.006 145);
+  --primary: oklch(0.62 0.19 145);
+  --primary-foreground: oklch(0.11 0.015 240);
+  --secondary: oklch(0.25 0.02 240);
+  --secondary-foreground: oklch(0.92 0.01 145);
+  --muted: oklch(0.24 0.018 240);
+  --muted-foreground: oklch(0.72 0.018 150);
+  --accent: oklch(0.28 0.05 145);
+  --accent-foreground: oklch(0.94 0.012 145);
+  --destructive: oklch(0.62 0.2 25);
+  --destructive-foreground: oklch(0.985 0 0);
+  --success: oklch(0.62 0.16 145);
+  --success-foreground: oklch(0.11 0.015 240);
+  --warning: oklch(0.78 0.14 78);
+  --warning-foreground: oklch(0.15 0.015 75);
+  --border: oklch(0.34 0.018 240);
+  --input: oklch(0.34 0.018 240);
+  --ring: oklch(0.62 0.16 145 / 55%);
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 6px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    min-height: 100%;
+    background: var(--background);
+  }
+
+  body {
+    min-height: 100%;
+    margin: 0;
+    color: var(--foreground);
+    font-family: 'Noto Sans Variable', 'Noto Sans', system-ui, sans-serif;
+    background:
+      linear-gradient(180deg, oklch(0.97 0.027 150 / 70%) 0%, transparent 34rem),
+      var(--background);
+  }
+
+  [data-theme='dark'] body {
+    background:
+      linear-gradient(180deg, oklch(0.22 0.05 145 / 34%) 0%, transparent 34rem),
+      var(--background);
+  }
+
+  button,
+  input,
+  select {
+    font: inherit;
+  }
+}
+
+.schedule-table {
+  table-layout: fixed;
+}
+
+.schedule-table th,
+.schedule-table td,
+.schedule-table td * {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  hyphens: auto;
+}
+
+.schedule-table th,
+.schedule-table td {
+  overflow: hidden;
+}
+
+.schedule-employee-cell {
+  width: 190px;
+}
+
+.schedule-total-cell {
+  width: 90px;
+}
+
+.schedule-appointment {
+  overflow: hidden;
+}
+
+.pac-container {
+  z-index: 9999;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 18px 40px oklch(0.16 0.015 240 / 16%);
+  font-family: 'Noto Sans Variable', 'Noto Sans', system-ui, sans-serif;
+}
+
+.pac-item {
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.pac-item-query {
+  color: var(--foreground);
+}
+
+@media print {
+  @page {
+    margin: 8mm;
+  }
+
+  html {
+    background: #ffffff !important;
+    color-scheme: light !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #111827 !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  main {
+    min-height: auto !important;
+    padding: 0 !important;
+  }
+
+  .app-shell {
+    max-width: none !important;
+    gap: 0 !important;
+  }
+
+  .print-area {
+    --background: #ffffff;
+    --foreground: #111827;
+    --card: #ffffff;
+    --card-foreground: #111827;
+    --popover: #ffffff;
+    --popover-foreground: #111827;
+    --primary: #0f766e;
+    --primary-foreground: #ffffff;
+    --secondary: #eef2f1;
+    --secondary-foreground: #1f2937;
+    --muted: #eef2f1;
+    --muted-foreground: #4b5563;
+    --accent: #e8f3ef;
+    --accent-foreground: #164e45;
+    --border: #9ca3af;
+    display: block !important;
+    border: 0 !important;
+    background: #ffffff !important;
+    color: #111827 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+
+  .print-area,
+  .print-area * {
+    color: inherit;
+    color-adjust: exact;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .print-area h2 {
+    font-size: 16pt !important;
+  }
+
+  .print-area table {
+    width: 100% !important;
+    min-width: 0 !important;
+    table-layout: fixed;
+    border-collapse: collapse;
+    font-size: 7pt;
+    line-height: 1.2;
+  }
+
+  .print-area th,
+  .print-area td {
+    border: 1px solid #9ca3af !important;
+    padding: 3px !important;
+    vertical-align: top;
+    overflow: hidden !important;
+    overflow-wrap: anywhere !important;
+    word-break: normal !important;
+    hyphens: auto !important;
+  }
+
+  .print-area thead tr,
+  .print-area thead th {
+    background: #0f766e !important;
+    color: #ffffff !important;
+  }
+
+  .print-area thead th * {
+    color: #ffffff !important;
+  }
+
+  .print-area .schedule-employee-cell {
+    width: 31mm !important;
+  }
+
+  .print-area .schedule-total-cell {
+    width: 13mm !important;
+  }
+
+  .print-area .schedule-appointment {
+    padding: 2px !important;
+    font-size: 6.5pt !important;
+    line-height: 1.18 !important;
+  }
+
+  .print-area.print-portrait table {
+    font-size: 6.2pt;
+  }
+
+  .print-area.print-portrait .schedule-employee-cell {
+    width: 24mm !important;
+  }
+
+  .print-area.print-portrait .schedule-total-cell {
+    width: 10mm !important;
+  }
+
+  .print-area.print-month table {
+    font-size: 7.4pt;
+  }
+
+  .print-area.print-month .month-date-cell {
+    width: 24mm !important;
+  }
+
+  .print-area.print-month .month-employee-cell {
+    width: 32mm !important;
+  }
+
+}

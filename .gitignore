@@ -1,0 +1,47 @@
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Dependencies
+node_modules
+
+# Build output
+/build
+/.svelte-kit
+/package
+dist
+
+# Local app data/cache
+/data
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE/editor
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+.idea
+
+# Tauri / Rust build artifacts
+src-tauri/target
+**/*.rs.bk
+
+# Local SQLite files
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
